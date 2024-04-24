@@ -53,7 +53,7 @@ set tabstop=4            " 设置编辑时制表符占用空格数
 set shiftwidth=2         " 设置格式化时制表符占用空格数
 set softtabstop=-1       " 设置4个空格为制表符
 set smarttab             " 在行和段开始处使用制表符
-set nowrap               " 禁止折行
+set wrap                 " 禁止折行
 set backspace=2          " 使用回车键正常处理indent,eol,start等
 set sidescroll=10        " 设置向右滚动字符数
 set nofoldenable         " 禁用折叠代码
@@ -71,7 +71,7 @@ set completeopt-=preview " 补全时不显示窗口，只显示补全列表
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set hlsearch            " 高亮显示搜索结果
 set incsearch           " 开启实时搜索功能
-set ignorecase          " 搜索时大小写不敏感
+set noic                " 搜索时区别大小写
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 缓存设置
@@ -133,7 +133,7 @@ call plug#begin('~/.vim/plugged')
 " Plug 'chxuan/vim-buffer'
 " Plug 'chxuan/vimplus-startify'
 Plug 'preservim/tagbar'
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 " Plug 'Yggdroot/LeaderF'
 " Plug 'mileszs/ack.vim'
 Plug 'easymotion/vim-easymotion'
@@ -250,6 +250,7 @@ let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 " 如果使用 universal ctags 需要增加下面一行，老的 Exuberant-ctags 不能加下一行
 let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+let g:gutentags_ctags_extra_args += ['--map-C=+.ic']
 " 检测 ~/.cache/tags 不存在就新建
 if !isdirectory(s:vim_tags)
    silent! call mkdir(s:vim_tags, 'p')
@@ -356,6 +357,8 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 nnoremap <leader>g :GV<cr>
 nnoremap <leader>G :GV!<cr>
 nnoremap <leader>gg :GV?<cr>
+
+nnoremap <leader>cf :py3f /usr/local/bin/clang-format.py<cr>
 
 nnoremap <F3> :execute(":tj ".expand("<cword>"))<cr>
 
